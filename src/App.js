@@ -6,106 +6,81 @@ import { ReactComponent as NoteIcon } from "./svg/note.svg";
 import { ReactComponent as TaskIcon } from "./svg/task.svg";
 import { ReactComponent as TrophyIcon } from "./svg/trophy.svg";
 import MenuPhase1 from "./MenuPhase1";
-import { motion, useAnimate, AnimatePresence } from "framer-motion";
-
-// function useBtnAnimation(click) {
-//   const [scope, animate] = useAnimate();
-
-//   useEffect(() => {
-//     if (scope.current) {
-//       animate(
-//         "#animatedContainer",
-//         {
-//           scale: click ? 1.1 : 1,
-//         },
-//         { duration: 1.5 }
-//       );
-//     }
-//   }, [click, animate, scope]);
-//   return scope;
-// }
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
   const [click, setClick] = useState(false);
-  // const scope = useBtnAnimation(click);
 
   return (
     <main>
-      <div
-        // ref={scope}
-        className="w-screen h-screen flex items-center justify-center"
-      >
+      <div className="w-screen h-screen flex items-center justify-center">
         <div>
           <AnimatePresence>
             <motion.div
-              id="animatedContainer"
               className={
                 click === true
-                  ? " flex flex-col border bg-gray-100 z-0 border-gray-300 px-6 py-2 rounded-xl !max-w-[425px] !min-w-[310px]"
-                  : " flex items-center justify-center gap-2 border border-gray-300 shadow-xl px-6 py-2 rounded-xl cursor-pointer w-[180px]"
+                  ? "w-full flex flex-col border bg-[#F0EBE3] z-0 border-gray-300 px-6 py-2 rounded-xl !max-w-[425px] !min-w-[310px]"
+                  : "flex items-center justify-center gap-2 border bg-[#F0EBE3] border-gray-300 shadow-xl rounded-xl cursor-pointer w-[180px]"
               }
-              onClick={() => {
-                setClick(!click);
-                console.log("non");
-              }}
+              initial={{ width: "fit-content" }}
               animate={{
-                width: click ? "100%" : 180,
-                height: click ? "auto" : 50,
-                transition: {
-                  height: { duration: 0.4 },
-                  width: { duration: 0.4 },
-                },
+                width: click ? "100%" : "fit-content",
+                scale: click ? [0, 1.1] : [1.1, 1],
               }}
+              transition={{ duration: 0.35 }}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                width="14"
-                height="14"
-                className={click === true ? "hidden" : ""}
+              <div
+                className={
+                  click
+                    ? "flex items-center justify-between gap-2 mb-4"
+                    : "flex items-center justify-between gap-2 px-6 py-2 w-full"
+                }
+                onClick={() => {
+                  setClick(!click);
+                }}
               >
-                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
-              </svg>
-              {click && (
-                <div className="flex items-center justify-between mb-4">
-                  <span className="">Create New</span>
-                  <motion.div
-                    className="cursor-pointer"
-                    onClick={() => {
-                      setClick(click);
-                      console.log("oui");
-                    }}
-                    // animate={{
-                    //   width: click ? 180 : "100%",
-                    //   height: click ? 50 : "auto",
-                    //   transition: {
-                    //     height: { duration: 0.4 },
-                    //     width: { duration: 0.4 },
-                    //   },
-                    // }}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                  width="14"
+                  height="14"
+                  className={click ? "hidden" : ""}
+                >
+                  <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+                </svg>
+                <span className="font-semibold">Create New</span>
+                <div
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setClick(click);
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="18"
+                    width="18"
+                    viewBox="0 0 512 512"
+                    className={!click ? "hidden" : "flex"}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="18"
-                      width="18"
-                      viewBox="0 0 512 512"
-                    >
-                      <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
-                    </svg>
-                  </motion.div>
+                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
+                  </svg>
                 </div>
-              )}
-              <span className={click === true ? "hidden" : ""}>Create New</span>
-
+              </div>
               <motion.div
                 className={
                   click
-                    ? "bg-[rgb(253,255,255)] rounded-xl border border-gray-300 shadow-xl flex flex-wrap justify-center items-center gap-2 p-4  h-[275px]"
+                    ? "bg-[#F6F5F2] rounded-xl border border-gray-300 shadow-xl flex flex-wrap justify-center items-center gap-2 p-4  h-[275px] overflow-hidden"
                     : "hidden"
                 }
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1.2 }}
+                animate={{
+                  scale: click ? [0, 1] : 1,
+                  opacity: click ? [0, 1] : 0,
+                  transition: {
+                    scale: { delay: 0.4, duration: 0.3 },
+                    opacity: { duration: 1 },
+                  },
+                }}
+                // transition={{ duration: 0.4, delay: 0.2 }}
               >
                 <MenuPhase1 text="Project" icon={<FolderIcon />} />
                 <MenuPhase1 text="Task" icon={<TaskIcon />} />
