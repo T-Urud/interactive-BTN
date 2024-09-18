@@ -1,15 +1,15 @@
 import React from "react";
+import { motion } from "framer-motion";
 
-const MenuPhase1 = () => {
+const MenuPhase1 = ({ text, icon }) => {
   return (
-    <div className="absolute z-10 w-[450px] -translate-x-1/2 bg-white h-[400px]">
-      <p className="text-red-500">llll</p>
-      <p>llll</p>
-      <p>llll</p>
-      <p>llll</p>
-      <p>llll</p>
-      <p>llll</p>
-    </div>
+    <motion.div
+      className="flex flex-col justify-center items-center gap-2 w-[100px] h-[100px] rounded-xl p-4"
+      whileHover={{ backgroundColor: "rgb(243 244 246)" }}
+    >
+      {icon}
+      <span className="text-sm font-semibold">{text}</span>
+    </motion.div>
   );
 };
 
