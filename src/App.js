@@ -26,13 +26,12 @@ function App() {
               } `}
               animate={{
                 scale: click ? [0.3, 1.1] : [1.1, 1],
-                padding: isHover && click ? "0 10px 12px" : "",
+                padding: isHover && click ? "0px 10px 12px" : "0px 0px 0px",
               }}
               transition={{
                 duration: 0.5,
                 ease: "easeInOut",
               }}
-              exit={{ scale: 1, opacity: 0 }}
             >
               <motion.div
                 className={`flex items-center justify-between gap-2 px-[10px] py-2 ${
